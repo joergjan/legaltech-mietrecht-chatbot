@@ -5,7 +5,7 @@ export const provideUsername = z.object({
 });
 
 export const askQuestion = z.object({
-  question: z.string().min(2).max(50),
+  question: z.string().min(2).max(250),
 });
 
 export type FormSchema = typeof provideUsername | typeof askQuestion;
