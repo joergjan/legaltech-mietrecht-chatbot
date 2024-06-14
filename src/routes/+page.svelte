@@ -4,8 +4,6 @@
   import AskQuestion from "./ask-questions.svelte";
   import { superForm } from "sveltekit-superforms";
   export let data: PageData;
-  import { fly, fade } from "svelte/transition";
-  import { quintOut } from "svelte/easing";
   import Chatbox from "$lib/components/chat/Chatbox.svelte";
 
   const {
@@ -29,7 +27,7 @@
   });
 </script>
 
-<main class="p-5">
+<main class="p-5 mb-48">
   <div class="flex items-center justify-center">
     <h1>Mietrecht Chatbot</h1>
   </div>
@@ -47,15 +45,22 @@
   {/if}
 
   {#if $qMessage || $uMessage}
-    <div class="border rounded-lg border-white mt-12">
+    <div class="border rounded-lg border-white">
       {#if $qMessage}
         <Chatbox history={$qMessage} />
       {:else}
         <Chatbox history={$uMessage} />
       {/if}
 
-      <div class="p-5">
-        <AskQuestion data={data.askQuestion} />
+      <div
+        class="md:p-5 md:block fixed bottom-0 left-0 right-0 p-5 bg-black bg-opacity-80 backdrop-blur-sm"
+      >
+        <div class="">
+          <AskQuestion data={data.askQuestion} />
+          <form action="?/restartChat">
+            <button class="px-3 py-2 rounded-md bg-red-500">neu starten</button>
+          </form>
+        </div>
       </div>
     </div>
   {/if}

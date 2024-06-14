@@ -49,4 +49,11 @@ export const actions: Actions = {
 
     return message(form, history);
   },
+  restartChat: async () => {
+    await chatSession.reset();
+
+    return {
+      redirect: "/",
+    };
+  },
 };

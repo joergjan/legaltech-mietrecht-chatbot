@@ -42,6 +42,11 @@ class ChatSession {
     return text;
   }
 
+  async reset() {
+    this.history = [];
+    this.chat = null;
+  }
+
   getChatHistory() {
     return this.history;
   }

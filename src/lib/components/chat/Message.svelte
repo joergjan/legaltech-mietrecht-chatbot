@@ -14,10 +14,12 @@
 </script>
 
 <div
-  class="flex {role === 'model' ? 'justify-start mr-32' : 'justify-end ml-32'}"
+  class="flex {role === 'model'
+    ? 'justify-start md:mr-32'
+    : 'justify-end md:ml-32'}"
 >
   {#if role === "model"}
-    <div class="flex items-center justify-center mr-5">
+    <div class="flex items-center justify-center md:mr-5 mr-2 -ml-2">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         height="30px"
@@ -34,7 +36,7 @@
     <p class="p-2">{@html message}</p>
   </li>
   {#if role === "user"}
-    <div class="flex items-center justify-center ml-5">
+    <div class="flex items-center justify-center md:ml-5 ml-2 -mr-2">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         height="30px"
