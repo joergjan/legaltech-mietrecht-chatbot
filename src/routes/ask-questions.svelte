@@ -23,13 +23,18 @@
   <Form.Field {form} name="question">
     <Form.Control let:attrs>
       <Form.Label>Was möchtest du wissen?</Form.Label>
-      <Input {...attrs} bind:value={$formData.question} />
+      <div class="relative">
+        <Input {...attrs} bind:value={$formData.question} disabled={$delayed} />
+        {#if $delayed}
+          <div
+            class="absolute top-0 bottom-0 left-0 flex items-center justify-center p-1"
+          >
+            <Sparkles />
+          </div>
+        {/if}
+      </div>
     </Form.Control>
     <Form.FieldErrors />
   </Form.Field>
   <Form.Button>Mietrecht Chatbot fragen</Form.Button>
 </form>
-
-{#if $delayed}
-  <Sparkles />
-{/if}

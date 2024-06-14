@@ -30,7 +30,16 @@
       <div class="flex items-center justify-center">
         <Form.Label>Wie heisst du?</Form.Label>
       </div>
-      <Input {...attrs} class="text-center" bind:value={$formData.username} />
+      <div class="relative">
+        <Input {...attrs} class="text-center" bind:value={$formData.username} />
+        {#if $delayed}
+          <div
+            class="absolute top-0 bottom-0 left-0 flex items-center justify-center p-1"
+          >
+            <Sparkles />
+          </div>
+        {/if}
+      </div>
     </Form.Control>
     <Form.FieldErrors />
   </Form.Field>
@@ -38,7 +47,3 @@
     <Form.Button>Speichern</Form.Button>
   </div>
 </form>
-
-{#if $delayed}
-  <Sparkles />
-{/if}
