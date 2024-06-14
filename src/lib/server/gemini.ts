@@ -7,6 +7,8 @@ class ChatSession {
   constructor(private genAI: any, private model: any) {}
 
   async initialize(user: string) {
+    this.deleteHistory();
+
     this.chat = this.model.startChat({
       history: [
         {
@@ -31,6 +33,10 @@ class ChatSession {
     const text = response.text();
     this.history.push({ role: "model", text });
     return text;
+  }
+
+  deleteHistory() {
+    this.history = [];
   }
 
   async additionalQuestion(msg: string) {

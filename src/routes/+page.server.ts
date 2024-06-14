@@ -24,7 +24,7 @@ export const actions: Actions = {
 
     const user = form.data.username;
 
-    const text = await chatSession.initialize(user);
+    await chatSession.initialize(user);
 
     const history = chatSession.getChatHistory();
 
@@ -41,19 +41,10 @@ export const actions: Actions = {
 
     const msg = form.data.question;
 
-    const text = await chatSession.additionalQuestion(msg);
+    await chatSession.additionalQuestion(msg);
 
     const history = chatSession.getChatHistory();
 
-    console.log(history);
-
     return message(form, history);
-  },
-  restartChat: async () => {
-    await chatSession.reset();
-
-    return {
-      redirect: "/",
-    };
   },
 };

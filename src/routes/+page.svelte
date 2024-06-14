@@ -1,10 +1,13 @@
 <script lang="ts">
+  import { afterUpdate } from "svelte";
   import type { PageData } from "./$types.js";
   import ProvideUsername from "./provide-username.svelte";
   import AskQuestion from "./ask-questions.svelte";
   import { superForm } from "sveltekit-superforms";
   export let data: PageData;
   import Chatbox from "$lib/components/chat/Chatbox.svelte";
+
+  let chatContainer: HTMLElement;
 
   const {
     delayed: uDelayed,
@@ -25,6 +28,12 @@
     resetForm: true,
     multipleSubmits: "prevent",
   });
+
+  afterUpdate(() => {
+    if (chatContainer) {
+      chatContainer.scrollIntoView({ behavior: "smooth", block: "end" });
+    }
+  });
 </script>
 
 <main class="p-5 mb-48">
@@ -40,12 +49,8 @@
     {/if}
   </div>
 
-  {#if $uDelayed || $qDelayed}
-    <div class="loader"></div>
-  {/if}
-
   {#if $qMessage || $uMessage}
-    <div class="border rounded-lg border-white">
+    <div bind:this={chatContainer}>
       {#if $qMessage}
         <Chatbox history={$qMessage} />
       {:else}
@@ -53,35 +58,10 @@
       {/if}
 
       <div
-        class="md:p-5 md:block fixed bottom-0 left-0 right-0 p-5 bg-black bg-opacity-80 backdrop-blur-sm"
+        class="md:p-5 md:block md:relative fixed bottom-0 left-0 right-0 p-5 md:bg-transparent md:backdrop-blur-none bg-black bg-opacity-80 backdrop-blur-sm"
       >
-        <div class="">
-          <AskQuestion data={data.askQuestion} />
-          <form action="?/restartChat">
-            <button class="px-3 py-2 rounded-md bg-red-500">neu starten</button>
-          </form>
-        </div>
+        <AskQuestion data={data.askQuestion} />
       </div>
     </div>
   {/if}
 </main>
-
-<style>
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-  .loader {
-    border: 16px solid #f3f3f3;
-    border-top: 16px solid #3498db;
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin 2s linear infinite;
-  }
-</style>

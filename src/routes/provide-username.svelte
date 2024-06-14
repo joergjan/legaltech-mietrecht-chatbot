@@ -7,6 +7,7 @@
     type Infer,
     superForm,
   } from "sveltekit-superforms";
+  import Sparkles from "$lib/components/Sparkles.svelte";
   import { zodClient } from "sveltekit-superforms/adapters";
 
   export let data: SuperValidated<Infer<typeof provideUsername>>;
@@ -36,27 +37,8 @@
   <div class="flex items-center justify-center">
     <Form.Button>Speichern</Form.Button>
   </div>
-  {#if $delayed}
-    <div class="loader"></div>
-  {/if}
 </form>
 
-<style>
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-  .loader {
-    border: 16px solid #f3f3f3;
-    border-top: 16px solid #3498db;
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin 2s linear infinite;
-  }
-</style>
+{#if $delayed}
+  <Sparkles />
+{/if}
