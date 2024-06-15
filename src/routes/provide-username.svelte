@@ -27,21 +27,14 @@
 >
   <Form.Field {form} name="username">
     <Form.Control let:attrs>
-      <div class="flex items-center justify-center">
-        <Form.Label>Wie heisst du?</Form.Label>
-      </div>
+      <Form.Label>Wie heisst du?</Form.Label>
+
       <div class="relative">
-        <Input
-          {...attrs}
-          class="text-center"
-          bind:value={$formData.username}
-          animate={$delayed}
-        />
+        <Input {...attrs} bind:value={$formData.username} animate={$delayed} />
       </div>
     </Form.Control>
     <Form.FieldErrors />
   </Form.Field>
-  <div class="flex items-center justify-center">
-    <Form.Button>Speichern</Form.Button>
-  </div>
+
+  <Form.Button>Speichern</Form.Button>
 </form>
