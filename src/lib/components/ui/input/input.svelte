@@ -42,6 +42,7 @@
     on:input
     on:wheel|passive
     {...$$restProps}
+    autocomplete="off"
   />
   <div class="absolute top-0 bottom-0 left-2 flex justify-center">
     <Sparkles {animate} />
