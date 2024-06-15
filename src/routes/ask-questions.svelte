@@ -24,14 +24,12 @@
     <Form.Control let:attrs>
       <Form.Label>Was möchtest du wissen?</Form.Label>
       <div class="relative">
-        <Input {...attrs} bind:value={$formData.question} disabled={$delayed} />
-        {#if $delayed}
-          <div
-            class="absolute top-0 bottom-0 left-0 flex items-center justify-center p-1"
-          >
-            <Sparkles />
-          </div>
-        {/if}
+        <Input
+          {...attrs}
+          bind:value={$formData.question}
+          disabled={$delayed}
+          animate={$delayed}
+        />
       </div>
     </Form.Control>
     <Form.FieldErrors />

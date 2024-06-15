@@ -31,14 +31,12 @@
         <Form.Label>Wie heisst du?</Form.Label>
       </div>
       <div class="relative">
-        <Input {...attrs} class="text-center" bind:value={$formData.username} />
-        {#if $delayed}
-          <div
-            class="absolute top-0 bottom-0 left-0 flex items-center justify-center p-1"
-          >
-            <Sparkles />
-          </div>
-        {/if}
+        <Input
+          {...attrs}
+          class="text-center"
+          bind:value={$formData.username}
+          animate={$delayed}
+        />
       </div>
     </Form.Control>
     <Form.FieldErrors />
