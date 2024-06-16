@@ -5,7 +5,7 @@
   import Sparkles from "$lib/components/Sparkles.svelte";
 
   export let animate: boolean = false;
-  type $$Props = HTMLInputAttributes;
+  type $$Props = HTMLInputAttributes & { animate?: boolean };
   type $$Events = InputEvents;
 
   let className: $$Props["class"] = undefined;

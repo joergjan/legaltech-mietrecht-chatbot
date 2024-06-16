@@ -60,6 +60,5 @@ class ChatSession {
 
 const genAI = new GoogleGenerativeAI(GEMINI_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-const chatSession = new ChatSession(genAI, model);
 
-export { chatSession };
+export { ChatSession, genAI, model };

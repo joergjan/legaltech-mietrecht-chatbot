@@ -3,7 +3,9 @@ import { message, superValidate } from "sveltekit-superforms";
 import { provideUsername, askQuestion } from "./schema";
 import { fail } from "@sveltejs/kit";
 import { zod } from "sveltekit-superforms/adapters";
-import { chatSession } from "$lib/server/gemini";
+import { ChatSession, genAI, model } from "$lib/server/gemini";
+
+const chatSession = new ChatSession(genAI, model);
 
 export const load: PageServerLoad = async () => {
   return {
