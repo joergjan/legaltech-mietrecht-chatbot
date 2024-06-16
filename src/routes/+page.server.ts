@@ -6,6 +6,7 @@ import { zod } from "sveltekit-superforms/adapters";
 import { ChatSession, genAI, model } from "$lib/server/gemini";
 
 const chatSession = new ChatSession(genAI, model);
+let history: Array<{ role: string; text: string }> = [];
 
 export const load: PageServerLoad = async () => {
   return {
@@ -18,6 +19,8 @@ export const actions: Actions = {
   provideUsername: async (event) => {
     const form = await superValidate(event, zod(provideUsername));
 
+    history = [];
+
     if (!form.valid) {
       return fail(400, {
         form,
@@ -26,9 +29,9 @@ export const actions: Actions = {
 
     const user = form.data.username;
 
-    await chatSession.initialize(user);
+    const text = await chatSession.initialize(user);
 
-    const history = chatSession.getChatHistory();
+    history.push({ role: "model", text });
 
     return message(form, history);
   },
@@ -43,9 +46,10 @@ export const actions: Actions = {
 
     const msg = form.data.question;
 
-    await chatSession.additionalQuestion(msg);
+    const text = await chatSession.additionalQuestion(msg);
 
-    const history = chatSession.getChatHistory();
+    history.push({ role: "user", text: msg });
+    history.push({ role: "model", text });
 
     return message(form, history);
   },

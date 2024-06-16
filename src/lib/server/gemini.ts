@@ -3,12 +3,9 @@ import { GEMINI_KEY } from "$env/static/private";
 
 class ChatSession {
   private chat: any;
-  private history: { role: string; text: string }[] = [];
   constructor(private genAI: any, private model: any) {}
 
   async initialize(user: string) {
-    this.deleteHistory();
-
     this.chat = this.model.startChat({
       history: [
         {
@@ -31,30 +28,16 @@ class ChatSession {
     const result = await this.chat.sendMessage(msg);
     const response = await result.response;
     const text = response.text();
-    this.history.push({ role: "model", text });
-    return text;
-  }
 
-  deleteHistory() {
-    this.history = [];
+    return text;
   }
 
   async additionalQuestion(msg: string) {
-    this.history.push({ role: "user", text: msg });
     const result = await this.chat.sendMessage(msg);
     const response = await result.response;
     const text = response.text();
-    this.history.push({ role: "model", text });
+
     return text;
-  }
-
-  async reset() {
-    this.history = [];
-    this.chat = null;
-  }
-
-  getChatHistory() {
-    return this.history;
   }
 }
 
