@@ -5,7 +5,7 @@ Chatbot für Auskünfte zum Schweizer Mietrecht (Studiumsprojekt)
 ## Verwendung
 
 1. GitHub Repo klonen
-2. [Gemini API Key](https://ai.google.dev/gemini-api/docs/api-key) generieren
+2. [Gemini API Key](https://ai.google.dev/gemini-api/docs/api-key) generieren und als "GEMINI_KEY" IM .env einfügen
 3. Dependencies installieren
 
 ```bash
