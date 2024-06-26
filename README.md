@@ -1,5 +1,10 @@
 # MietBot
 
+Vorgelegt durch:\
+[joergjan@students.zhaw.ch](mailto:joergjan@students.zhaw.ch)\
+[leutesve@students.zhaw.ch](mailto:leutesve@students.zhaw.ch)\
+[murtadri@students.zhaw.ch](mailto:murtadri@students.zhaw.ch)
+
 Chatbot für Auskünfte zum Schweizer Mietrecht (Studiumsprojekt)
 
 ## Verwendung
