@@ -38,7 +38,7 @@
 
 <main class="p-5 mb-48">
   <div class="flex items-center justify-center">
-    <h1>Mietrecht Chatbot</h1>
+    <h1>MietBot</h1>
   </div>
   <br />
   <br />
